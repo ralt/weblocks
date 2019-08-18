@@ -7,7 +7,8 @@
                 #:get-dependencies
                 #:make-dependency)
   ;; Just dependencies
-  (:import-from #:log))
+  (:import-from #:log)
+  (:export #:jquery-backend))
 (in-package weblocks/js/jquery)
 
 
