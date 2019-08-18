@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Hints &#8212; weblocks/reblocks 0.38.1 documentation</title>
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="ChangeLog" href="changelog.html" />
+    <link rel="prev" title="Contributing to Weblocks" href="contributing.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          weblocks/reblocks</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.38</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="changelog.html">Changelog</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Documentation <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components.html">Components of Weblocks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stores.html">Stores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="widgets.html">Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hooks.html">Request Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="forms.html">Forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="views.html">Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="continuations.html">Continuation-based tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dependencies.html">Dependency handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="html.html">HTML generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adapting.html">Adapting Weblocks to your needs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internals.html">Weblocks Internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to Weblocks</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Hints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">ChangeLog</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Hints</a><ul>
+<li><a class="reference internal" href="#basic-sbcl-setup">Basic SBCL setup</a></li>
+<li><a class="reference internal" href="#deployment">Deployment</a></li>
+<li><a class="reference internal" href="#store-comparison">Store comparison</a><ul>
+<li><a class="reference internal" href="#cl-prevalence">cl-prevalence</a><ul>
+<li><a class="reference internal" href="#advantages">Advantages</a></li>
+<li><a class="reference internal" href="#disadvantages">Disadvantages</a></li>
+<li><a class="reference internal" href="#bottom-line">Bottom line</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#elephant">Elephant</a><ul>
+<li><a class="reference internal" href="#id1">Advantages</a></li>
+<li><a class="reference internal" href="#negatives">Negatives</a></li>
+<li><a class="reference internal" href="#id2">Bottom line</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#clsql">CLSQL</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#weblocks-compared-to-other-frameworks">Weblocks compared to other frameworks</a><ul>
+<li><a class="reference internal" href="#at-a-glance">At a glance</a></li>
+<li><a class="reference internal" href="#in-depth-comparison">In-depth comparison</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    <div class="col-md-9 content">
+      
+  <div class="section" id="hints">
+<h1>Hints<a class="headerlink" href="#hints" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="basic-sbcl-setup">
+<h2>Basic SBCL setup<a class="headerlink" href="#basic-sbcl-setup" title="Permalink to this headline">¶</a></h2>
+<p>I recommend the following SBCL initialization file (on UNIX systems it is <code class="docutils literal notranslate"><span class="pre">~/.sbclrc</span></code>:</p>
+<div class="code common-lisp highlight-common-lisp notranslate"><div class="highlight"><pre><span></span><span class="c1">; stale FASLs</span>
+<span class="p">(</span><span class="nb">defmethod</span> <span class="nv">asdf:perform</span> <span class="ss">:around</span> <span class="p">((</span><span class="nv">o</span> <span class="nv">asdf:load-op</span><span class="p">)</span> <span class="p">(</span><span class="nv">c</span> <span class="nv">asdf:cl-source-file</span><span class="p">))</span>
+    <span class="p">(</span><span class="nb">handler-case</span> <span class="p">(</span><span class="nb">call-next-method</span> <span class="nv">o</span> <span class="nv">c</span><span class="p">)</span>
+      <span class="p">(</span><span class="o">#+</span><span class="nv">sbcl</span> <span class="nv">sb-ext:invalid-fasl</span>
+       <span class="o">#-</span><span class="p">(</span><span class="nb">or</span> <span class="nv">sbcl</span> <span class="nv">allegro</span> <span class="nv">lispworks</span> <span class="nv">cmu</span><span class="p">)</span> <span class="nb">error</span> <span class="p">()</span>
+       <span class="p">(</span><span class="nv">asdf:perform</span> <span class="p">(</span><span class="nb">make-instance</span> <span class="ss">&#39;asdf:compile-op</span><span class="p">)</span> <span class="nv">c</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">call-next-method</span><span class="p">))))</span>
+</pre></div>
+</div>
+<p>Using:</p>
+<ul class="simple">
+<li>aclrepl (see also <a class="reference external" href="http://www.sbcl.org/manual/sb_002daclrepl.html">http://www.sbcl.org/manual/sb_002daclrepl.html</a>);</li>
+<li>rlwrap (<a class="reference external" href="http://freshmeat.net/projects/rlwrap/">http://freshmeat.net/projects/rlwrap/</a>);</li>
+<li>clbuild.</li>
+</ul>
+</div>
+<div class="section" id="deployment">
+<h2>Deployment<a class="headerlink" href="#deployment" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>detachtty</li>
+<li>screen</li>
+<li>tmux</li>
+<li>remote swank</li>
+</ul>
+</div>
+<div class="section" id="store-comparison">
+<h2>Store comparison<a class="headerlink" href="#store-comparison" title="Permalink to this headline">¶</a></h2>
+<p>Different stores have different merits. Here’s a short comparison.</p>
+<div class="section" id="cl-prevalence">
+<h3>cl-prevalence<a class="headerlink" href="#cl-prevalence" title="Permalink to this headline">¶</a></h3>
+<p>This library embodies the prevalence database strategy:
+Everything is kept in main memory; all writes are logged
+to disk, and the in-memory database is restored with the
+aid of the log at initialization time.</p>
+<div class="section" id="advantages">
+<h4>Advantages<a class="headerlink" href="#advantages" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>This means excellent speed and seamless integration with CL as query
+language.</li>
+</ul>
+</div>
+<div class="section" id="disadvantages">
+<h4>Disadvantages<a class="headerlink" href="#disadvantages" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>No transaction support for objects in memory.</li>
+<li>Database size limited by size of virtual memory.</li>
+<li>No load balancing capabilities (but you can run the
+database on a separate machine)</li>
+</ul>
+</div>
+<div class="section" id="bottom-line">
+<h4>Bottom line<a class="headerlink" href="#bottom-line" title="Permalink to this headline">¶</a></h4>
+<p>Prevalence is a great library to start with because you
+can do carefree prototyping and also run production sites.</p>
+<p>w_strong(Important note:) The original version of cl-prevalence has
+some bugs that prevent it from working reliably when used with Weblocks.</p>
+<p>It is recommended to use the fork at
+<a class="reference external" href="http://bitbucket.org/skypher/cl-prevalence/">http://bitbucket.org/skypher/cl-prevalence/</a> where this problem has been
+remedied.</p>
+</div>
+</div>
+<div class="section" id="elephant">
+<h3>Elephant<a class="headerlink" href="#elephant" title="Permalink to this headline">¶</a></h3>
+<p>Elephant is based on a key-value database model (like SQL servers)
+It offers convenient CLOS integration and decent speed.</p>
+<div class="section" id="id1">
+<h4>Advantages<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Transactions affect in-memory objects.</li>
+<li>Excellent support for schema updates: Elephant manages
+most issues on its own even across process boundaries.
+Special cases (slot migration/deletion) can be specified
+by the user by hooking into the MOP.</li>
+<li>Queries are formulated completely in CL.</li>
+</ul>
+</div>
+<div class="section" id="negatives">
+<h4>Negatives<a class="headerlink" href="#negatives" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Less speed than cl-prevalence especially with a high
+number of slot accesses.</li>
+<li>Watch out when handling primitive types like arrays
+and conses, Elephant doesn’t have its hooks in there.</li>
+<li>BDB backend: load balancing not easily realized.</li>
+<li>PostgreSQL backend: incomplete support for sorting
+values containing NIL.</li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h4>Bottom line<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<p>Not as easy to set up as cl-prevalence, but a great library
+to work with.</p>
+</div>
+</div>
+<div class="section" id="clsql">
+<h3>CLSQL<a class="headerlink" href="#clsql" title="Permalink to this headline">¶</a></h3>
+<p>The CLSQL store relies on the popular SQL ecosystem. This means
+proven client-server management systems like PostgreSQL, hosts
+of excellent tools and great interoperability.</p>
+<p>On the negative side SQL has an impedance mismatch when matched
+against object-oriented data structures.</p>
+<p>You cannot use CL as a query language either, CLSQL only provides
+a Lispy layer over SQL.</p>
+</div>
+</div>
+<div class="section" id="weblocks-compared-to-other-frameworks">
+<h2>Weblocks compared to other frameworks<a class="headerlink" href="#weblocks-compared-to-other-frameworks" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="at-a-glance">
+<h3>At a glance<a class="headerlink" href="#at-a-glance" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils" id="id3">
+<caption><span class="caption-text">Weblocks compared with other frameworks</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="17%" />
+<col width="17%" />
+<col width="17%" />
+<col width="17%" />
+<col width="17%" />
+<col width="17%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">&#160;</th>
+<th class="head">Weblocks</th>
+<th class="head">Seaside</th>
+<th class="head">PLT Webserver</th>
+<th class="head">RubyOnRails</th>
+<th class="head">Django</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Language</td>
+<td>Common Lisp</td>
+<td>Smalltalk</td>
+<td>Scheme</td>
+<td>Ruby</td>
+<td>Python</td>
+</tr>
+<tr class="row-odd"><td>Supports REST</td>
+<td>Yes</td>
+<td>&#160;</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr class="row-even"><td>Suports multi-tier dispatch</td>
+<td>Yes</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>AJAX support built-in</td>
+<td>Yes</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr class="row-even"><td>Degrades gracefully without AJAX</td>
+<td>Yes</td>
+<td>(N/A)</td>
+<td>(N/A)</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr class="row-odd"><td>Scaffolding/DRY</td>
+<td>Dynamic</td>
+<td>&#160;</td>
+<td>No</td>
+<td>Static</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>Support for non-SQL databases</td>
+<td>Yes</td>
+<td>&#160;</td>
+<td>Yes</td>
+<td>No</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>Interactive debugging</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr class="row-even"><td>Bundling/compression built-in</td>
+<td>Yes</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr class="row-odd"><td>Community</td>
+<td>Tiny</td>
+<td>Small</td>
+<td>Small</td>
+<td>Medium</td>
+<td>Medium</td>
+</tr>
+<tr class="row-even"><td>Community support</td>
+<td>Yes</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr class="row-odd"><td>Commercial support</td>
+<td>Yes</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr class="row-even"><td>Licence</td>
+<td>LLGPL</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="in-depth-comparison">
+<h3>In-depth comparison<a class="headerlink" href="#in-depth-comparison" title="Permalink to this headline">¶</a></h3>
+<p>Weblocks</p>
+<dl class="docutils">
+<dt>Django:         read basics at djangobook.com</dt>
+<dd>Django works at a level similar to hunchentoot. A series of urls is mapped to functions. Templates can be used to fill in html.
+Uses mvc.</dd>
+<dt>Python:         Twisted?</dt>
+<dd>Google App Engine?</dd>
+<dt>Rails:          Uses mvc. Ruby has some nice language features. Framework is backwards, and forces you to repeat yourself many times. A guiding</dt>
+<dd>principle is to not repeat yourself (colloquially DRY) and in combination with a poor DSL it can be quite gibberishy.
+Strongly tied to SQL as data store.</dd>
+</dl>
+<p>Ruby:           Other?</p>
+<p>Perl:           Mason?</p>
+<p>PHP:            Cake?</p>
+<p>Seaside</p>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="_sources/hints.rst.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2017, group of lisp hackers.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
